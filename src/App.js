@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Todomvc from "./component/Todomvc"
+import Todomvc from "./component/todomvc/Todomvc"
 
 class App extends Component {
   render() {
