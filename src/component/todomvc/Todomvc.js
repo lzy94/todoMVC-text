@@ -7,26 +7,41 @@ class Todomvc extends Component {
     constructor(props){
         super(props);
         this.state = {
-            todos:[]
+            todos:[],
+            len:0
         }
     }
     
-    dataList = (e) => {
-        if(e.keyCode===13){
-            this.setState({
-                todos:[{
-                completed:false,
-                title:e.target.value
-            },...this.state.todos]});
-        }
+    dataList = (todos) => {
+        this.setState({
+            todos:todos
+        },() => {
+            this.getLen();
+        })
     }
+
+    getLen(){
+        let num = 0;
+        let todos = this.state.todos;
+        for(let i = 0; i < todos.length; i++){
+            if(todos[i].completed == false){
+                num++;
+            }
+        }
+        this.setState({
+            len:num
+        })
+    }
+
+
+
 
     render () {
         return (
             <div>
                 <Header dataList = { this.dataList } />
-                <TodoList todos = { this.state.todos } />
-                <Footer />
+                <TodoList todos = { this.state.todos } dataList = { this.dataList }/>
+                <Footer len = { this.state.len } />
             </div>
         );
     }

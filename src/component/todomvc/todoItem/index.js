@@ -20,7 +20,6 @@ class TodoItem extends Component {
     }
 
     readList(){
-        console.log(12)
         return this.props.todos.map((item,i)=>{
             return (
                 <li className={ item.completed?'completed':'' } key={ i }>
